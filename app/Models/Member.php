@@ -6,8 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Member extends Model
 {
-    public function members()
+    protected $fillable = [
+        'group_id',
+        'name',
+    ];
+
+    // メンバーは1つのグループに所属する
+    public function group()
     {
-        return $this->hasMany(Member::class);
+        return $this->belongsTo(Group::class);
     }
 }
